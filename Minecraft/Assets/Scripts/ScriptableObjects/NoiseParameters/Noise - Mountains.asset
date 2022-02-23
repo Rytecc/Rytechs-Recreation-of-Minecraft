@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 312169acc03356f4995f3925fe10f32e, type: 3}
+  m_Name: Noise - Mountains
+  m_EditorClassIdentifier: 
+  mSeed: 0
+  mFrequency: 0.05
+  mNoiseType: 3
+  mRotationType3D: 0
+  mFractalType: 0
+  Octaves: 3
+  Lacunarity: 2
+  Gain: 0.5
+  WeightedStrength: 0
+  PingPongStength: 2
+  FractalBounding: 0.5714286
+  CellularDistanceFunction: 1
+  CellularReturnType: 1
+  CellularJitterModifier: 1
+  DomainWarpType: 0
+  DomainWarpAmp: 1
+  Intensity: 30

@@ -1,0 +1,93 @@
+/// <summary>
+///"0 = Air
+///"1 = Grass
+///"2 = Dirt
+///"3 = Stone
+///"4 = Bedrock
+///"5 = Sand
+///"6 = Oak_Log
+///"7 = Oak_Leaves
+///"8 = Cactus
+///"9 = Rose
+///"10 = Dandelion
+///"11 = Dead Bush
+///"12 = Crafting_Table
+///"13 = Furnace
+///"14 = Furnace_On
+///"15 = Oak_Planks
+///"16 = Coal_Ore
+///"17 = Iron_Ore
+///"18 = Diamond_Ore
+///"19 = Cobblestone
+/// </summary>
+
+    static void SetNoiseParameters(FastNoiseLite NoiseGenerator, NoiseGeneratorParams param)
+    {
+        NoiseGenerator.SetCellularDistanceFunction(param.CellularDistanceFunction);
+        NoiseGenerator.SetCellularJitter(param.CellularJitterModifier);
+        NoiseGenerator.SetCellularReturnType(param.CellularReturnType);
+        NoiseGenerator.SetDomainWarpAmp(param.DomainWarpAmp);
+        NoiseGenerator.SetDomainWarpType(param.DomainWarpType);
+        NoiseGenerator.SetFractalGain(param.Gain);
+        NoiseGenerator.SetFractalLacunarity(param.Lacunarity);
+        NoiseGenerator.SetFractalOctaves(param.Octaves);
+        NoiseGenerator.SetFractalPingPongStrength(param.PingPongStength);
+        NoiseGenerator.SetFractalType(param.mFractalType);
+        NoiseGenerator.SetFractalWeightedStrength(param.WeightedStrength);
+        NoiseGenerator.SetFrequency(param.mFrequency);
+        NoiseGenerator.SetNoiseType(param.mNoiseType);
+        NoiseGenerator.SetRotationType3D(param.mRotationType3D);
+        NoiseGenerator.SetSeed(param.mSeed == 0 ? UnityEngine.Random.Range(-int.MaxValue, int.MaxValue) : param.mSeed);
+    }
+
+package org.server.cmdrestrtictor.util;
+
+import java.io.File;
+import java.io.IOException;
+
+import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.configuration.file.YamlConfiguration;
+
+public class CustomConfigManager 
+{
+
+	private static File file;
+	private static FileConfiguration config;
+	
+	public static void Setup()
+	{
+		file = new File(Bukkit.getServer().getPluginManager().getPlugin("cmdrestrictor").getDataFolder(), "blacklistedcmds.yml");
+		
+		if(!file.exists())
+		{
+			try {
+				file.createNewFile();
+			} catch (IOException e) {
+				
+			}
+		}
+		
+		config = YamlConfiguration.loadConfiguration(file);
+		
+	}
+	
+	public static FileConfiguration get()
+	{
+		return config;
+	}
+	
+	public static void save()
+	{
+		try {
+			config.save(file);
+		} catch (IOException e) {
+		}
+	}
+	
+	public static void reload()
+	{
+		config = YamlConfiguration.loadConfiguration(file);
+	}
+	
+}
